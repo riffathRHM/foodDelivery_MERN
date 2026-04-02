@@ -1,19 +1,24 @@
 //create a exprss server 
-import exprss from "express"
+import express from "express"
 import cors from "cors"
 import { connect } from "mongoose"
 import { connectDB } from "./config/db.js"
+import foodRouter from "./routes/foodRoutes.js"
 
 //app config 
-const app = exprss()
+const app = express()
 const port = 4000
 
 //middleware 
-app.use(exprss.json()) // when ever get a request from backend to frontend that will passed with this json
+app.use(express.json()) // when ever get a request from backend to frontend that will passed with this json
 app.use(cors()) // we can access any frontend from backend
 
 //DB Connection
 connectDB();
+
+//API endpoints
+app.use("/api/food", foodRouter)
+app.use("/images",express.static('uploads'))
 
 
 app.get("/",(req,res)=>{
