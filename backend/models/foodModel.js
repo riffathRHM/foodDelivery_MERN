@@ -8,6 +8,6 @@ const foodSchema = new mongoose.Schema ({
     category:{type:String,required:true}
 })
 //if food model is not exisits then create a food model check with or 
-const foodModel = mongoose.model.food || mongoose.model("food",foodSchema);
+const foodModel = mongoose.models.food || mongoose.model("food",foodSchema);
 export default foodModel;
 
